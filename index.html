@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Glass App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="theme-day bg-clear-day bg-mode-photo">
+  <main class="app-shell">
+    <section class="sidebar glass">
+      <form id="searchForm" class="searchbar" autocomplete="off">
+        <input id="cityInput" type="text" placeholder="Cerca città (es. Napoli)" />
+        <button type="submit" aria-label="Cerca">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-3.5-3.5"></path>
+          </svg>
+        </button>
+      </form>
+
+      <button id="geoBtn" class="ghost-btn" type="button">Usa la mia posizione</button>
+
+      <div class="current-weather compact-current">
+        <div id="currentIcon" class="weather-emoji">☀️</div>
+        <div>
+          <div id="currentTemp" class="current-temp">--°</div>
+          <div id="currentLabel" class="current-label">Caricamento...</div>
+        </div>
+      </div>
+
+      <div class="meta-grid">
+        <div class="meta-card glass-soft">
+          <span>Percepita</span>
+          <strong id="feelsLike">--°</strong>
+        </div>
+        <div class="meta-card glass-soft">
+          <span>Vento</span>
+          <strong id="windSpeed">-- km/h</strong>
+        </div>
+        <div class="meta-card glass-soft">
+          <span>Pioggia</span>
+          <strong id="precipitation">-- mm</strong>
+        </div>
+        <div class="meta-card glass-soft">
+          <span>Umidità</span>
+          <strong id="humidity">--%</strong>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="forecast-header">
+        <span id="dailyTitle">Previsioni 16 giorni</span>
+        <small id="locationName">--</small>
+      </div>
+
+      <div class="daily-scroll-wrap">
+        <div id="dailyList" class="daily-list"></div>
+      </div>
+    </section>
+
+    <section class="hero glass">
+      <div class="hero-top">
+        <div>
+          <p class="eyebrow">Situazione meteo</p>
+          <h1 id="heroTitle">Meteo locale</h1>
+          <p id="heroSubtitle" class="hero-subtitle">Dati meteo aggiornati con Open-Meteo</p>
+        </div>
+        <div class="hero-badge glass-soft">
+          <span>Ora locale</span>
+          <strong id="currentTime">--:--</strong>
+        </div>
+      </div>
+
+      <div class="hero-bottom">
+        <div class="hero-summary glass-soft">
+          <div>
+            <span>Alba</span>
+            <strong id="sunrise">--:--</strong>
+          </div>
+          <div>
+            <span>Tramonto</span>
+            <strong id="sunset">--:--</strong>
+          </div>
+          <div>
+            <span>Max / Min</span>
+            <strong id="maxMin">--° / --°</strong>
+          </div>
+          <div>
+            <span>Prob. pioggia</span>
+            <strong id="rainChance">--%</strong>
+          </div>
+        </div>
+
+        <div class="hourly-section">
+          <div class="section-head">
+            <h2 id="hourlyTitle">Prossime ore</h2>
+            <span id="hourlyHint">Oggi</span>
+          </div>
+          <div class="hourly-scroll-wrap">
+            <div id="hourlyList" class="hourly-list"></div>
+          </div>
+        </div>
+
+        <div id="status" class="status is-loading" aria-live="polite">
+          <span class="status-spinner" aria-hidden="true"></span>
+          <span id="statusText" class="status-text shimmer-text">Recupero dati meteo in corso...</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <template id="dailyItemTemplate">
+    <article class="day-row glass-soft">
+      <div>
+        <h3 class="day-name"></h3>
+        <p class="day-desc"></p>
+      </div>
+      <div class="day-temp"></div>
+    </article>
+  </template>
+
+  <template id="hourlyItemTemplate">
+    <article class="hour-card glass-soft">
+      <p class="hour-time"></p>
+      <div class="hour-icon"></div>
+      <p class="hour-temp"></p>
+      <small class="hour-rain"></small>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
